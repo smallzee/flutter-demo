@@ -4,23 +4,48 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  bool myNewButton = false;
+  String myText = "Hello";
+
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         home: Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
         title: Text("Login"),
       ),
+      body: Column(
+        children: [
+          RaisedButton(
+            onPressed: () {
+              setState(() {
+              myNewButton != myNewButton;
+              });
+            },
+            child: Text("Click me"),
+            color: Colors.blue,
+            textColor: Colors.white,
+          ),
+          Text( myNewButton ? "This is true" : myText),
+          Row(
+            children: [Text("Welcome")],
+          )
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.red,
+        color: Colors.blue,
         child: IconButton(
             onPressed: () {
               print("Hello");
             },
-            icon: Icon(Icons.home)
-            ),
+            icon: Icon(Icons.home)),
       ),
     ));
   }
